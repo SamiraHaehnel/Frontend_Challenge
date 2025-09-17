@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { clickOutside } from "$lib/actions/clickOutside";
   let selected = "babycat";
   let open = false;
   let activeIndex = 0;
