@@ -2,7 +2,8 @@
   import Card from '$lib/components/card.svelte';
   import Dropdown from "$lib/components/dropdown_div.svelte";
 
-  let selected = "";
+
+  let selected = "babycat";
 
   const options = [
     { label: "Baby Katze", value: "babycat", image: "src/images/babycat.jpg", description: "Wenn du dachtest, du brauchst was Süßes, dann bist du hier schonmal falsch. Spirituel gesagt, war diese Katze einst ein Piercer.", hashtags: ["cute", "dangerous", "gourmet"]  },
@@ -14,7 +15,6 @@
     selected = val;
   }
 </script>
-
 <div class="space-y-4">
 <Dropdown bind:value={selected} {options} onChange={(value: string) => selected = value} />
 

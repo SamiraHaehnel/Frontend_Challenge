@@ -49,7 +49,6 @@ function handleKeyDown(event: KeyboardEvent) {
 }
 
 </script>
-
 <div
   class="relative max-w-sm mx-auto"
   use:clickOutside={() => (open = false)}
@@ -57,7 +56,7 @@ function handleKeyDown(event: KeyboardEvent) {
   <button
     type="button"
     class="w-full bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 text-left flex justify-between items-center
-           hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
+           hover:bg-purple focus:ring-2 focus:ring-yellow-bright mt-1 mb-1"
       on:click={toggleMenu}
       on:keydown={handleKeyDown} aria-haspopup="listbox" aria-expanded={open}
   >
