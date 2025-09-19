@@ -7,7 +7,7 @@
 <nav class="bg-nav sticky w-full z-20 top-0 start-0 border-b border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <!-- Logo -->
-    <a href="/about" class="flex items-center space-x-3 rtl:space-x-reverse">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="./src/images/logo.png" class="h-15" alt="Cat DnD Logo" />
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CAT DND</span>
     </a>
@@ -61,7 +61,7 @@
         </li>
         <li>
           <a
-            href="/katzen"
+            href="/cats"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
             Katzen
@@ -77,7 +77,7 @@
         </li>
         <li>
           <a
-            href="/about"
+            href="/fights"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0 cursor-not-allowed"
           >
             Schlichtungsstelle
