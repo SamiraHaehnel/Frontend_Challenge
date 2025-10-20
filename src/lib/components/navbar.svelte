@@ -2,25 +2,32 @@
   import { page } from "$app/stores";
   import { slide } from "svelte/transition";
   let open = false;
+  let login
 </script>
 
 <nav class="bg-nav sticky w-full z-20 top-0 start-0 border-b border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <!-- Logo -->
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="./src/images/logo.png" class="h-15" alt="Cat DnD Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CAT DND</span>
+      <img src="./src/images/logo.png" class="h-15" alt="Rekursiver Blog Logo" />
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Rekursiver Blog</span>
     </a>
 
-    <!-- Buttons rechts -->
+    <!-- Buttons rechts, wenn nicht eingeloggt -->
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button
         type="button"
         class="bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 text-left flex justify-between items-center
                hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
       >
-        Los gehts!
+        Login
       </button>
+      <button
+      type="button"
+      class="bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 ml-5 text-left flex justify-between items-center
+             hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
+    >
+      Registrieren
+    </button>
 
       <!-- Hamburger -->
       <button
@@ -59,20 +66,20 @@
             Home
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a
             href="/cats"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
             Katzen
           </a>
-        </li>
+        </li> -->
         <li>
           <a
             href="/lore"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
-            Lore
+            Über
           </a>
         </li>
         <li>

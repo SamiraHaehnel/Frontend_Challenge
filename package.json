@@ -21,5 +21,9 @@
 		"tailwindcss": "^4.1.13",
 		"typescript": "^5.0.0",
 		"vite": "^7.0.4"
+	},
+	"dependencies": {
+		"@supabase/auth-helpers-sveltekit": "0.13.0",
+		"@supabase/supabase-js": "2.75.1"
 	}
 }
