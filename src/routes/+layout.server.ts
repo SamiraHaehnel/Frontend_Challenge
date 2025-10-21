@@ -1,8 +1,11 @@
 import type { LayoutServerData } from './$types';
 
-export const load = async ({ locals }): Promise<LayoutServerData> => {
+export const load: import('./$types').LayoutServerLoad = async ({ locals }) => {
+    const session = locals.session;
+
     return {
-        session: locals.session
+        session,
+        user: session?.user ?? null
     };
 };
 

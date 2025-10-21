@@ -1,2 +1,0 @@
-Das Tagesziel ist es, zu schauen, wie man Supabase logisch und sinnvoll einbindet, zu schauen, wie man mcp und cursor einbindet.
-Grafisch möchte ich mich auf die Nav-Bar fokussieren und den Katzen-Testcontent rausschmeißen.
