@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { userStore, loadUserData } from '../stores/userStore.js';
+  import { userStore, loadUserData } from '../stores/UserStore.js';
   
   let title = "Willkommen beim Rekursiven Blog!";
   let subtitle = "Lerne aus meinen Fehlern und schreibe deine eigenen Erfahrungen!";
