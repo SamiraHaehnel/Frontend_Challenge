@@ -11,7 +11,6 @@
     FormatButtonGroup,
     HeadingButtonGroup,
     ImageButtonGroup,
-    InvisibleButtonGroup,
     LayoutButtonGroup,
     ListButtonGroup,
     SourceButtonGroup,
@@ -20,12 +19,12 @@
     TaskListButtonGroup,
     UndoRedoButtonGroup,
     YoutubeButtonGroup,
-  } from "flowbite-svelte";
-  import { Button } from "flowbite-svelte";
+  } from "@flowbite-svelte-plugins/texteditor";
   import type { Editor } from "@tiptap/core";
+  import { Button } from "flowbite-svelte";
 
-  let editorInstance: Editor | null = null;
-  let isEditable = true;
+  let editorInstance = $state<Editor | null>(null);
+  let isEditable = $state(true);
 
   function getEditorContent() {
     return editorInstance?.getHTML() ?? "";
@@ -35,7 +34,7 @@
     editorInstance?.commands.setContent(content);
   }
 
-  const content = `<p>Flowbite-Svelte is an <strong>open-source library of UI components</strong>...</p>`;
+  const content = `<p>Hallo</p>`;
 
   function handleEditableToggle(editable: boolean) {
     isEditable = editable;
@@ -48,9 +47,32 @@
     "Tom Cruise",
     "Madonna",
     "Jerry Hall",
+    "Joan Collins",
+    "Winona Ryder",
+    "Christina Applegate",
+    "Alyssa Milano",
+    "Molly Ringwald",
+    "Ally Sheedy",
+    "Debbie Harry",
+    "Olivia Newton-John",
+    "Elton John",
+    "Michael J. Fox",
+    "Axl Rose",
+    "Emilio Estevez",
+    "Ralph Macchio",
+    "Rob Lowe",
+    "Jennifer Grey",
+    "Mickey Rourke",
+    "John Cusack",
+    "Matthew Broderick",
+    "Justine Bateman",
+    "Lisa Bonet",
   ];
 </script>
 
+<p class="text-gray-600">
+  Deiner Kreativität sind nur rechtliche Grenzen gesetzt
+</p>
 <TextEditor
   bind:editor={editorInstance}
   {content}
@@ -58,8 +80,12 @@
   file
   {isEditable}
   contentprops={{ id: "drag-handle-editable" }}
+  class="w-450 max-w-sm sm:max-w-md md:max-w-lg min-h-200 lg:max-w-xl bg-white border border-gray-200 rounded-lg shadow-sm mx-auto mb-10 dark:bg-white dark:text-grey-500"
 >
-  <ToolbarRowWrapper>
+  <ToolbarRowWrapper
+    class="
+    "
+  >
     <EditableButton
       editor={editorInstance}
       bind:isEditable
@@ -79,8 +105,6 @@
     <ImageButtonGroup editor={editorInstance} />
     <Divider />
     <YoutubeButtonGroup editor={editorInstance} />
-    <Divider />
-    <InvisibleButtonGroup editor={editorInstance} />
     <Divider />
     <SourceButtonGroup editor={editorInstance} />
   </ToolbarRowWrapper>
@@ -106,14 +130,15 @@
 
   {#snippet footer()}
     {#if editorInstance}
-      <CharacterCount editor={editorInstance} limit={700} />
+      <CharacterCount editor={editorInstance} limit={1800} />
     {/if}
   {/snippet}
 </TextEditor>
-
-<div class="mt-4 flex gap-2">
-  <Button on:click={() => console.log(getEditorContent())}>Log Content</Button>
-  <Button on:click={() => setEditorContent("<p>New content!</p>")}
+<div class="mt-4">
+  <Button onclick={() => console.log(getEditorContent())}
+    >Log den Quatsch</Button
+  >
+  <Button onclick={() => setEditorContent("<p>New content!</p>")}
     >Set Content</Button
   >
 </div>
