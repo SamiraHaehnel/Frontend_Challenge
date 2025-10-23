@@ -1,27 +1,54 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
   import { slide } from "svelte/transition";
+  import { supabase } from "$lib/supabaseClient";
+  import { userStore, loadUserData } from '../stores/UserStore.js';
+  import { onMount } from "svelte";
+  
   let open = false;
+
+  onMount(() => {
+    loadUserData();
+  });
 </script>
 
 <nav class="bg-nav sticky w-full z-20 top-0 start-0 border-b border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <!-- Logo -->
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-      <img src="./src/images/logo.png" class="h-15" alt="Cat DnD Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CAT DND</span>
+      <img src="./src/images/logo.png" class="h-15" alt="Rekursiver Blog Logo" />
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Rekursiver Blog</span>
     </a>
 
-    <!-- Buttons rechts -->
+    {#if !$userStore.isLoggedIn}
     <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button
         type="button"
         class="bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 text-left flex justify-between items-center
                hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
+        on:click={() => window.location.href = '/auth?mode=login'}
       >
-        Los gehts!
+        Login
       </button>
-
+      <button
+      type="button"
+      class="bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 ml-5 text-left flex justify-between items-center
+             hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
+      on:click={() => window.location.href = '/auth'}
+    >
+      Registrieren
+    </button>
+    </div>
+    {:else}
+    <button
+    type="button"
+    class="bg-purple-dark text-yellow-bright 
+            font-medium rounded-xl text-sm px-5 py-2.5 ml-5 text-left flex justify-between items-center
+           hover:bg-purple focus:ring-2 focus:ring-yellow-bright"
+    on:click={() => window.location.href = '/dashboard'}
+  >
+    <span>{$userStore.display_name}</span>
+  </button>
+    {/if}
       <!-- Hamburger -->
       <button
         on:click={() => (open = !open)}
@@ -36,7 +63,6 @@
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
       </button>
-    </div>
 
     <!-- Menü -->
     <div
@@ -59,20 +85,20 @@
             Home
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a
             href="/cats"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
             Katzen
           </a>
-        </li>
+        </li> -->
         <li>
           <a
             href="/lore"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
-            Lore
+            Über
           </a>
         </li>
         <li>

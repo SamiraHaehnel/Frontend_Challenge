@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Card from '$lib/components/card.svelte';
-  import Dropdown from "$lib/components/dropdown_div.svelte";
+  import Card from '$lib/components/Card.svelte';
+  import Dropdown from "$lib/components/DropdownDiv.svelte";
 
 
   let selected = "babycat";
