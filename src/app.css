@@ -1,9 +1,9 @@
-@import 'tailwindcss';
-
+@import "tailwindcss";
+@import "flowbite";
 
 @theme {
   --color-purple-dark: #340458;
-  --color-purple: #7B05E2;
-  --color-yellow-bright: #FFF31A;
+  --color-purple: #7b05e2;
+  --color-yellow-bright: #fff31a;
   --color-nav: #784390;
 }
