@@ -5,7 +5,6 @@
 </script>
 
 <div class="min-h-screen bg-gray-50 p-6">
-  <!-- Header -->
   <div class="mb-8">
     <h1 class="text-4xl font-bold text-gray-900 mb-2">
       Na <span class="text-purple-600">{$userStore.display_name}</span>?

@@ -49,7 +49,10 @@
   }
 </script>
 
-<div class="relative max-w-sm mx-auto" use:clickOutside={() => (open = false)}>
+<div
+  class="relative max-w-sm mx-auto ml-2 mr-2"
+  use:clickOutside={() => (open = false)}
+>
   <button
     type="button"
     class="w-full bg-purple-dark text-yellow-bright font-medium rounded-lg text-sm px-5 py-2.5 text-left flex justify-between items-center
