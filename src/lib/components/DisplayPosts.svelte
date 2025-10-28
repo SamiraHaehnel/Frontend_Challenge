@@ -3,8 +3,8 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
 
-  let posts: any[] = [];
-  let loading = true;
+  let posts = $state<any[]>([]);
+  let loading = $state(true);
 
   onMount(async () => {
     const { data, error } = await supabase

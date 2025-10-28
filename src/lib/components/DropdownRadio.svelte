@@ -3,7 +3,6 @@
 
   let { options = [], selected = "", onSelect = () => {} } = $props();
 
-  // So Zustände
   let open = $state(false);
   let activeIndex = $state(0);
 

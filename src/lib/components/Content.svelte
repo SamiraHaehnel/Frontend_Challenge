@@ -3,20 +3,26 @@
   import { userStore, loadUserData } from "../stores/UserStore.js";
   import { supabase } from "$lib/supabaseClient";
   import { goto } from "$app/navigation";
+  import Checkbox from "$lib/components/Checkbox.svelte";
 
-  let title = "Willkommen beim Rekursiven Blog!";
-  let subtitle =
-    "Lerne aus meinen Fehlern und ziehe deine eigenen Erfahrungen!";
-
+  let title = $state("Willkommen beim Rekursiven Blog!");
+  let subtitle = $state(
+    "Lerne aus meinen Fehlern und ziehe deine eigenen Erfahrungen!"
+  );
+  let genres = $state<{ id: number; name: string }[]>([]);
+  let selectedGenreId: number | null = $state(null);
   let posts = $state<any[]>([]);
+  let filteredPosts = $state<any[]>([]);
   let loading = $state(true);
   let errorMsg = $state("");
+
+  let search = $state("");
 
   async function loadPosts() {
     loading = true;
     const { data, error } = await supabase
       .from("posts")
-      .select(`id, title, excerpt, date`)
+      .select(`id, title, excerpt, date, genre:genres(name)`)
       .order("date", { ascending: false });
 
     if (error) {
@@ -24,23 +30,40 @@
       errorMsg = "Konnte keine Beiträge laden.";
     } else {
       posts = data || [];
+      filteredPosts = posts;
     }
     loading = false;
   }
-  let filteredPosts = $state([]);
+  async function loadGenres() {
+    const { data, error } = await supabase.from("genres").select("id, name");
+    if (error) {
+      console.error("Fehler beim Laden der Genres:", error);
+      return;
+    }
+    genres = data;
+  }
+  function filterPosts() {
+    const lowerSearch = search.toLowerCase();
 
-  let search = $state("");
-  let selectedGenre = $state("all");
+    filteredPosts = posts.filter((post) => {
+      const matchesSearch =
+        !search || post.title.toLowerCase().includes(lowerSearch);
+      const matchesGenre =
+        !selectedGenreId || post.genre?.id === selectedGenreId;
+      return matchesSearch && matchesGenre;
+    });
+  }
 
   onMount(() => {
     loadUserData();
     loadPosts();
+    loadGenres();
   });
 </script>
 
 <header class="bg-purple-900">
   <section
-    class="relative min-h-200 flex flex-col items-center justify-center text-center
+    class="relative min-h-100 flex flex-col items-center justify-center text-center
            text-yellow-300 overflow-hidden"
   >
     <div class="max-w-3xl p-6 animate-fadeInUp">
@@ -61,32 +84,53 @@
           </p>
         </div>
       {/if}
-
-      <button
-        class="px-6 py-3 rounded-2xl bg-yellow-300 text-purple-900 font-semibold
-             hover:scale-110 hover:rotate-2 transition-transform duration-300 shadow-xl"
-      >
-        Zu den Beiträgen
-      </button>
     </div>
   </section>
 
-  <section class=" py-12 px-6 border-t-1 border-yellow-300">
+  <section class="py-12 px-6">
     <h2 class="text-3xl font-semibold mb-6 text-center text-white">
-      Die Beiträge
+      Alle Beiträge
     </h2>
+
+    <div class="max-w-3xl mx-auto mb-6">
+      <input
+        type="text"
+        placeholder="Beiträge nach Titel suchen..."
+        bind:value={search}
+        oninput={filterPosts}
+        class="w-full p-3 rounded-xl border border-purple-400/30 bg-purple-800/50 text-yellow-300 placeholder-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+      />
+    </div>
+    {#if genres.length > 0}
+      <div class="max-w-3xl mx-auto mb-6">
+        <Checkbox
+          options={genres.map((g) => ({
+            label: g.name,
+            value: g.id.toString(),
+          }))}
+          onSelect={(value: string) => {
+            selectedGenreId = parseInt(value);
+            filterPosts();
+          }}
+        />
+      </div>
+    {:else}
+      <p class="text-gray-400 text-sm">Genres werden geladen...</p>
+    {/if}
 
     {#if loading}
       <p class="text-center text-gray-500">Beiträge werden geladen...</p>
     {:else if errorMsg}
       <p class="text-center text-red-500">{errorMsg}</p>
-    {:else if posts.length === 0}
-      <p class="text-center text-gray-500">Noch keine Beiträge vorhanden.</p>
+    {:else if filteredPosts.length === 0}
+      <p class="text-center text-gray-500">
+        Keine passenden Beiträge gefunden.
+      </p>
     {:else}
       <div
         class="max-w-3xl mx-auto grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-6 p-4 bg-purple-800/50 rounded-xl border border-purple-400/30"
       >
-        {#each posts as post}
+        {#each filteredPosts as post}
           <div
             onclick={() => goto(`/post/${post.id}`)}
             class="cursor-pointer p-2
@@ -106,8 +150,9 @@
               {post.excerpt}
             </p>
             <p class="text-xs text-gray-400 mt-2">
-              {new Date(post.date).toLocaleDateString()}
+              {new Date(post.date).toLocaleDateString()} – {post.genre?.name}
             </p>
+            <p class="text-xs text-gray-400 mt-2"></p>
           </div>
         {/each}
       </div>

@@ -32,8 +32,8 @@
   let isEditable = $state(true);
   let genres = $state<{ id: number; name: string }[]>([]);
   let status = $state<{ id: number; name: string }[]>([]);
-  let selectedGenreId: number | null = null;
-  let selectedStatusId: number | null = null;
+  let selectedGenreId: number | null = $state(null);
+  let selectedStatusId: number | null = $state(null);
   let showDialog = $state(false);
   let dialogData = $state({ title: "", excerpt: "" });
 

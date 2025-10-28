@@ -1,0 +1,12 @@
+    <!-- <button
+      type="button"
+      role="tab"
+      id="tab-signup"
+      class="py-2 rounded-md text-sm font-medium text-center cursor-pointer transition-colors"
+      class:bg-yellow-bright={mode === "signup"}
+      class:text-purple-dark={mode === "signup"}
+      class:text-white={mode !== "signup"}
+      onclick={() => (mode = "signup")}
+    >
+      Registrieren
+    </button> -->

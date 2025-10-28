@@ -3,9 +3,10 @@
   import { userStore, loadUserData } from "../stores/UserStore.js";
   import { supabase } from "$lib/supabaseClient";
 
-  let title = "Willkommen beim Rekursiven Blog!";
-  let subtitle =
-    "Lerne aus meinen Fehlern und schreibe deine eigenen Erfahrungen!";
+  let title = $state("Willkommen beim Rekursiven Blog!");
+  let subtitle = $state(
+    "Lerne aus meinen Fehlern und schreibe deine eigenen Erfahrungen!"
+  );
 
   // Posts laden
   let posts = $state<any[]>([]);

@@ -1,6 +1,6 @@
-<script lang="ts">
-  import Card from "../../../archiviert/Card.svelte";
-  import Dropdown from "$lib/components/DropdownDiv.svelte";
+<!-- <script lang="ts">
+  import Card from "../Card.svelte";
+  import Dropdown from "$lib/component";
 
   let selected = "babycat";
 
@@ -51,4 +51,4 @@
       hashtags={options.find((o) => o.value === selected)?.hashtags}
     />
   {/if}
-</div>
+</div> -->

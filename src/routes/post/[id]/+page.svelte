@@ -3,7 +3,7 @@
   import type { PageProps } from "./$types";
 
   let { data }: PageProps = $props();
-  const post = data.post;
+  const post = $state(data.post);
 </script>
 
 <section class="max-w-4xl mx-auto p-6">

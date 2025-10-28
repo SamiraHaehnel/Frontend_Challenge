@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
-import { getCurrentUserDisplayName } from '../userProfile.js';
+import { writable } from "svelte/store";
+import { getCurrentUserDisplayName } from "../userProfile.js";
 
 export interface UserState {
   display_name: string;
@@ -10,10 +10,10 @@ export interface UserState {
 
 // Initialer Store-Zustand
 const initialState: UserState = {
-  display_name: '',
+  display_name: "",
   isLoggedIn: false,
   isLoading: true,
-  error: null
+  error: null,
 };
 
 // Writable Store erstellen
@@ -21,27 +21,27 @@ export const userStore = writable<UserState>(initialState);
 
 // Funktion zum Laden der Benutzerdaten
 export async function loadUserData() {
-  userStore.update(state => ({ ...state, isLoading: true, error: null }));
-  
+  userStore.update((state) => ({ ...state, isLoading: true, error: null }));
+
   try {
     const display_name = await getCurrentUserDisplayName();
-    const isLoggedIn = display_name !== 'Unbekannter Benutzer';
-    
-    userStore.update(state => ({
+    const isLoggedIn = display_name !== "Unbekannter Benutzer";
+
+    userStore.update((state) => ({
       ...state,
       display_name,
       isLoggedIn,
       isLoading: false,
-      error: null
+      error: null,
     }));
   } catch (error) {
-    console.error('Fehler beim Laden der Benutzerdaten:', error);
-    userStore.update(state => ({
+    console.error("Fehler beim Laden der Benutzerdaten:", error);
+    userStore.update((state) => ({
       ...state,
-      display_name: 'Unbekannter Benutzer',
+      display_name: "Unbekannter Benutzer",
       isLoggedIn: false,
       isLoading: false,
-      error: error instanceof Error ? error.message : 'Unbekannter Fehler'
+      error: error instanceof Error ? error.message : "Unbekannter Fehler",
     }));
   }
 }
@@ -53,9 +53,9 @@ export function resetUserData() {
 
 // Funktion zum Aktualisieren des Display Names
 export function updateDisplayName(newDisplayName: string) {
-  userStore.update(state => ({
+  userStore.update((state) => ({
     ...state,
     display_name: newDisplayName,
-    isLoggedIn: true
+    isLoggedIn: true,
   }));
 }

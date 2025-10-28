@@ -3,15 +3,15 @@
   import { login, signup } from "$lib/auth/AuthService";
 
   type Mode = "login" | "signup";
-  let mode: Mode = "login";
+  let mode = $state<Mode>("login");
 
-  let nickname = "";
-  let email = "";
-  let password = "";
-  let passwordConfirm = "";
-  let errorMessage = "";
-  let infoMessage = "";
-  let loading = false;
+  let nickname = $state("");
+  let email = $state("");
+  let password = $state("");
+  let passwordConfirm = $state("");
+  let errorMessage = $state("");
+  let infoMessage = $state("");
+  let loading = $state(false);
 
   // Mögliche Nachrichten für den User
   function resetMessages() {
@@ -103,7 +103,7 @@
   </div>
 
   <div
-    class="grid grid-cols-2 gap-1 mb-6 rounded-lg bg-purple-dark p-1"
+    class="grid gap-1 mb-6 rounded-lg bg-purple-dark p-1"
     role="tablist"
     aria-label="Auth"
   >
@@ -115,22 +115,9 @@
       class:bg-yellow-bright={mode === "login"}
       class:text-purple-dark={mode === "login"}
       class:text-white={mode !== "login"}
-      on:click={() => (mode = "login")}
+      onclick={() => (mode = "login")}
     >
       Anmelden
-    </button>
-
-    <button
-      type="button"
-      role="tab"
-      id="tab-signup"
-      class="py-2 rounded-md text-sm font-medium text-center cursor-pointer transition-colors"
-      class:bg-yellow-bright={mode === "signup"}
-      class:text-purple-dark={mode === "signup"}
-      class:text-white={mode !== "signup"}
-      on:click={() => (mode = "signup")}
-    >
-      Registrieren
     </button>
   </div>
 
@@ -141,7 +128,13 @@
     <p class="mb-4 text-sm text-red-500">{errorMessage}</p>
   {/if}
 
-  <form on:submit|preventDefault={handleAuth} class="space-y-4">
+  <form
+    onsubmit={(event) => {
+      event.preventDefault();
+      handleAuth(event);
+    }}
+    class="space-y-4"
+  >
     <div>
       <label for="email" class="block text-sm text-white mb-1">E-Mail</label>
       <input
