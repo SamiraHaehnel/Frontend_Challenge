@@ -99,7 +99,7 @@
   class="max-w-md mx-auto my-10 p-6 rounded-xl backdrop-blur border border-purple bg-nav"
 >
   <div class="flex items-center justify-center mb-6">
-    <img src="src/images/logo.png" alt="Logo" class="h-16 w-16" />
+    <img src="/logo.png" alt="Logo" class="h-16 w-16" />
   </div>
 
   <div

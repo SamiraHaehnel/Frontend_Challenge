@@ -7,6 +7,7 @@
   function selectOption(value: string) {
     selected = value;
     open = false;
+
     onSelect(value);
   }
 </script>

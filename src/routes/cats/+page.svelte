@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Card from "$lib/components/Card.svelte";
+  import Card from "../../../archiviert/Card.svelte";
   import Dropdown from "$lib/components/DropdownDiv.svelte";
 
   let selected = "babycat";

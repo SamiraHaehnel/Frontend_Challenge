@@ -1,1 +1,0 @@
-Login, Registrierung, die Verifizierung per Email zum Laufen bringen usw. Lies dazu bitte die Docs von Supabase.

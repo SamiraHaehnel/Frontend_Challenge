@@ -1,9 +1,4 @@
 <script lang="ts">
-  // export let label: string;
-  // export let image: string;
-  // export let description: string;
-  // export let hashtags: string[] = [];
-
   const { label, image, description, hashtags } = $props();
 </script>
 
