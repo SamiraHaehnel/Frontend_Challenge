@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Error from "$lib/components/Error.svelte";
+  import Error from "$lib/components/Error.svelte";
 </script>
 
-<Error />
+<div class="max-h-screen min-h-250"><Error /></div>

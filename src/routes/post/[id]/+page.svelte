@@ -6,7 +6,7 @@
   const post = $state(data.post);
 </script>
 
-<section class="max-w-4xl mx-auto p-6">
+<section class="max-w-4xl mx-auto p-6 flex flex-col min-h-screen">
   <article class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">
     <header class="mb-6">
       <h1 class="text-4xl font-bold text-purple-dark p-2">

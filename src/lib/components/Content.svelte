@@ -17,12 +17,13 @@
   let errorMsg = $state("");
 
   let search = $state("");
+  let selectedGenreIds = new Set<number>();
 
   async function loadPosts() {
     loading = true;
     const { data, error } = await supabase
       .from("posts")
-      .select(`id, title, excerpt, date, genre:genres(name)`)
+      .select(`id, title, excerpt, date, genre:genres(id, name)`)
       .order("date", { ascending: false });
 
     if (error) {
@@ -31,6 +32,7 @@
     } else {
       posts = data || [];
       filteredPosts = posts;
+      filterPosts();
     }
     loading = false;
   }
@@ -49,7 +51,7 @@
       const matchesSearch =
         !search || post.title.toLowerCase().includes(lowerSearch);
       const matchesGenre =
-        !selectedGenreId || post.genre?.id === selectedGenreId;
+        selectedGenreIds.size === 0 || selectedGenreIds.has(post.genre?.id);
       return matchesSearch && matchesGenre;
     });
   }
@@ -108,8 +110,9 @@
             label: g.name,
             value: g.id.toString(),
           }))}
-          onSelect={(value: string) => {
-            selectedGenreId = parseInt(value);
+          onSelect={(selected: Set<string>) => {
+            // Umwandeln in Set<number>
+            selectedGenreIds = new Set([...selected].map((v) => parseInt(v)));
             filterPosts();
           }}
         />

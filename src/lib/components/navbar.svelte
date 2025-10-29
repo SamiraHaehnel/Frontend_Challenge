@@ -110,14 +110,14 @@
             Home
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a
             href="/lore"
             class="block py-2 px-3 text-white rounded-sm hover:bg-text-yellow-bright md:hover:text-yellow-bright md:p-0"
           >
             Über
           </a>
-        </li>
+        </li> -->
         <li>
           <a
             href="/fights"

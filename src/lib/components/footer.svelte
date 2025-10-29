@@ -11,7 +11,7 @@
           >Rekursiver Blog™</span
         >
       </a>
-      <ul
+      <!-- <ul
         class="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0"
       >
         <li>
@@ -23,7 +23,7 @@
         <li>
           <a href="/" class="hover:underline me-4 md:me-6">Licensing</a>
         </li>
-      </ul>
+      </ul> -->
     </div>
     <hr class="my-6 border-gray-400 sm:mx-auto lg:my-8" />
     <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"
