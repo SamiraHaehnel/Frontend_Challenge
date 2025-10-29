@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto, invalidateAll } from "$app/navigation";
-  import { login, signup } from "$lib/auth/AuthService";
+  import { login, signup } from "$lib/auth/authService";
+  import Seo from "$lib/components/SEO.svelte";
 
   type Mode = "login" | "signup";
   let mode = $state<Mode>("login");
@@ -95,6 +96,12 @@
   }
 </script>
 
+<Seo
+  title={`Login - Rekursiver Blog`}
+  description={"Logge dich ein!"}
+  url={`https://rekursiver-blog.de/auth`}
+  type="website"
+/>
 <section
   class="max-w-md mx-auto my-10 p-6 rounded-xl backdrop-blur border border-purple bg-nav"
 >
@@ -131,7 +138,7 @@
   <form
     onsubmit={(event) => {
       event.preventDefault();
-      handleAuth(event);
+      handleAuth();
     }}
     class="space-y-4"
   >

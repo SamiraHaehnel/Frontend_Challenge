@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { userStore, loadUserData } from "../stores/UserStore.js";
+  import { userStore, loadUserData } from "$lib/stores/userStore.ts";
   import { supabase } from "$lib/supabaseClient";
   import { goto } from "$app/navigation";
   import Checkbox from "$lib/components/Checkbox.svelte";

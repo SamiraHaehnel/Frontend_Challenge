@@ -4,8 +4,6 @@
   import { supabase } from "$lib/supabaseClient";
   import { getCurrentUserProfile } from "$lib/userProfile";
   import DisplayPosts from "$lib/components/DisplayPosts.svelte";
-
-  // Mock-Daten für das Dashboard
   const recentPosts = [
     {
       id: 1,

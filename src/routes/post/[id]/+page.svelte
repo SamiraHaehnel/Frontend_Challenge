@@ -1,10 +1,17 @@
 <script lang="ts">
   import type { PageData } from "./$types";
   import type { PageProps } from "./$types";
-
+  import Seo from "$lib/components/SEO.svelte";
   let { data }: PageProps = $props();
   const post = $state(data.post);
 </script>
+
+<Seo
+  title={`${post.title} - Rekursiver Blog`}
+  description={post.excerpt}
+  url={`https://rekursiver-blog.de/post/${post.id}`}
+  type="article"
+/>
 
 <section class="max-w-4xl mx-auto p-6 flex flex-col min-h-screen">
   <article class="bg-white p-8 rounded-2xl shadow-md border border-gray-200">

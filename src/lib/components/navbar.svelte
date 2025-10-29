@@ -2,24 +2,16 @@
   import { page } from "$app/stores";
   import { slide } from "svelte/transition";
   import { supabase } from "$lib/supabaseClient";
-  import { userStore, loadUserData } from "../stores/UserStore.js";
+  import { userStore, loadUserData } from "../stores/userStore.js";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
+  import { logout } from "$lib/auth/authService";
 
   let open = $state(false);
 
   onMount(() => {
     loadUserData();
   });
-
-  async function logout() {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error("Logout error", error);
-    }
-    localStorage.removeItem("some-app-state");
-    goto("/");
-  }
 </script>
 
 <nav class="bg-nav sticky w-full z-20 top-0 start-0 border-b border-gray-200">

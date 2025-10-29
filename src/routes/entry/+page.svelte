@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { userStore, loadUserData } from "$lib/stores/UserStore.js";
+  import { userStore, loadUserData } from "$lib/stores/UserStore";
   import Entry from "$lib/components/Entry.svelte";
 </script>
 
