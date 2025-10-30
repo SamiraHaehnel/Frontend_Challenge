@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { userStore, loadUserData } from "$lib/stores/UserStore";
-  import Entry from "$lib/components/Entry.svelte"
+  import Entry from "$lib/components/Entry.svelte";
   import { goto } from "$app/navigation";
 
   onMount(() => {
