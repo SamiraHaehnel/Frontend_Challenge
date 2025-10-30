@@ -81,7 +81,6 @@
 </script>
 
 <div class="min-h-screen bg-gray-50 p-6">
-  <!-- Header -->
   <div class="mb-8">
     <h1 class="text-4xl font-bold text-gray-900 mb-2">
       Willkommen zurück, <span class="text-purple-600"
@@ -93,7 +92,6 @@
     </p>
   </div>
 
-  <!-- Statistiken -->
   <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
     <div class="bg-white rounded-lg shadow-md p-6">
       <div class="flex items-center">
