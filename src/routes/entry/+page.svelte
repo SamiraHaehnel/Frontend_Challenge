@@ -2,6 +2,15 @@
   import { onMount } from "svelte";
   import { userStore, loadUserData } from "$lib/stores/UserStore";
   import Entry from "$lib/components/Entry.svelte";
+  import { goto } from "$app/navigation";
+
+  onMount(() => {
+    loadUserData();
+    const token = localStorage.getItem("sb-access-token");
+    if (!token) {
+      goto("/auth");
+    }
+  });
 </script>
 
 <div class="min-h-screen bg-gray-50 p-6">

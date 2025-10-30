@@ -23,7 +23,8 @@
     loading = true;
     const { data, error } = await supabase
       .from("posts")
-      .select(`id, title, excerpt, date, genre:genres(id, name)`)
+      .select(`id, title, excerpt, date, genre:genres(id, name), status_id`)
+      .eq("status_id", 2)
       .order("date", { ascending: false });
 
     if (error) {

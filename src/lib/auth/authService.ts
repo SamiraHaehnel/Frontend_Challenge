@@ -12,7 +12,11 @@ export async function login(email: string, password: string) {
   });
 
   if (error) return { data, error };
-  goto("/dashboard");
+  if (data?.session) {
+    localStorage.setItem("sb-access-token", data.session.access_token);
+    localStorage.setItem("sb-refresh-token", data.session.refresh_token);
+    goto("/dashboard");
+  }
 
   return { data, error };
 }
@@ -37,11 +41,27 @@ export async function signup(
   });
 }
 
+// export async function logout() {
+//   await supabase.auth.signOut();
+//   goto("/");
+// }
 export async function logout() {
-  await supabase.auth.signOut();
+  try {
+    await supabase.auth.signOut();
+  } catch (error) {
+    console.error("Supabase logout error:", error);
+  }
+
+  localStorage.removeItem("sb-access-token");
+  localStorage.removeItem("sb-refresh-token");
+
+  document.cookie =
+    "sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  document.cookie =
+    "sb-refresh-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+
   goto("/");
 }
-
 export async function resetPassword(email: string): Promise<AuthResult> {
   return await supabase.auth.resetPasswordForEmail(email, {
     redirectTo:
@@ -70,7 +90,12 @@ export async function signInWithOAuth(
 }
 
 export function onAuthChange(callback: (event: string, session: any) => void) {
-  return supabase.auth.onAuthStateChange((event, session) =>
-    callback(event, session)
-  );
+  return supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event === "SIGNED_IN" && session) {
+      // Store session access token and refresh token in localStorage
+      localStorage.setItem("sb-access-token", session.access_token);
+      localStorage.setItem("sb-refresh-token", session.refresh_token);
+    }
+    callback(event, session);
+  });
 }

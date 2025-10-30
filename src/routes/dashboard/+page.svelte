@@ -4,6 +4,7 @@
   import { supabase } from "$lib/supabaseClient";
   import { getCurrentUserProfile } from "$lib/userProfile";
   import DisplayPosts from "$lib/components/DisplayPosts.svelte";
+  import { goto } from "$app/navigation";
   const recentPosts = [
     {
       id: 1,
@@ -70,9 +71,12 @@
     totalLikes: 456,
     totalComments: 89,
   };
-
   onMount(() => {
     loadUserData();
+    const token = localStorage.getItem("sb-access-token");
+    if (!token) {
+      goto("/auth");
+    }
   });
 </script>
 
