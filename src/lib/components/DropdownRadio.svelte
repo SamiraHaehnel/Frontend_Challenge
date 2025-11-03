@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { clickOutside } from "$lib/actions/ClickOutside.svelte";
+  import { clickOutside } from "$lib/actions/ClickOutside.ts";
 
   let { options = [], selected = "", onSelect = () => {} } = $props();
 

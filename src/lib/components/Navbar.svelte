@@ -2,7 +2,7 @@
   import { page } from "$app/stores";
   import { slide } from "svelte/transition";
   import { supabase } from "$lib/supabaseClient";
-  import { userStore, loadUserData } from "../stores/userStore.js";
+  import { userStore, loadUserData } from "../stores/UserStore.js";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
   import { logout } from "$lib/auth/authService";
