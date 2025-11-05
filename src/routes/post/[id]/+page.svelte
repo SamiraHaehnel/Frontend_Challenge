@@ -29,30 +29,7 @@
       </div>
     </header>
 
-    <div
-      class="prose prose-lg max-w-none
-[&_ul]:list-disc [&_ul]:ml-6
-[&_ol]:list-decimal [&_ol]:ml-6
-[&_a]:text-purple [&_a]:underline [&_a]:hover:text-purple-dark
-[&_strong]:text-purple-dark
-[&_h1]:text-purple-dark [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4
-[&_h2]:text-purple-dark [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mt-6 [&_h2]:mb-3
-[&_h3]:text-purple-dark [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2
-[&_p]:text-gray-700 [&_p]:leading-relaxed
-[&_blockquote]:border-l-4 [&_blockquote]:border-purple [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:text-gray-600 [&_blockquote]:my-4
-[&_code]:bg-gray-100 [&_code]:text-purple-dark [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:font-mono [&_code]:text-sm
-[&_pre]:bg-gray-100 [&_pre]:text-sm [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_pre_code]:text-purple-dark
-[&_hr]:my-6 [&_hr]:border-gray-300
-[&_img]:rounded-xl [&_img]:shadow-md [&_img]:my-4
-[&_figure]:my-4 [&_figure]:text-center
-[&_figcaption]:text-sm [&_figcaption]:text-gray-500 [&_figcaption]:mt-2
-[&_table]:w-full [&_table]:border-collapse [&_th]:border-b [&_th]:border-gray-300 [&_th]:text-left [&_th]:font-semibold [&_td]:border-b [&_td]:border-gray-200 [&_td]:py-2 [&_td]:pr-4
-[&_small]:text-sm [&_small]:text-gray-500
-[&_mark]:bg-yellow-200 [&_mark]:text-gray-900
-[&_li]:mb-1
-[&_kbd]:bg-gray-200 [&_kbd]:text-xs [&_kbd]:font-mono [&_kbd]:px-1 [&_kbd]:py-0.5 [&_kbd]:rounded
-"
-    >
+    <div class="prose-custom">
       {@html post.content}
     </div>
 
